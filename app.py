@@ -4,13 +4,13 @@ import threading
 import time
 import websocket
 import json
-import pickle
+import joblib
 import numpy as np
 import gzip
 app = Flask(__name__)
 socketio = SocketIO(app, cors_allowed_origins="*")
 kline_data_15m=None
-model_15m = pickle.load(gzip.open('model_gzip_15m.pkl', 'rb'))
+model_15m = joblib.load('Model_15m.joblib')
 @socketio.on('connect')
 def Live_stream():
     def Fifteen_Minute_Function():
